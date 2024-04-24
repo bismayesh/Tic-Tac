@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class CharController : MonoBehaviour
 {
-
+    public Transform rayStart;
     private Rigidbody rb;
     private bool walkingRight=true;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Awake()
         //fixed update to move the player forward
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -28,6 +30,12 @@ public class CharController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) {
             Switch();
+        }
+        //start ray from the bottom of the character to see if it would hit the ground or not, if it doesnot hit then start the trigger
+        RaycastHit hit;
+        if (Physics.Raycast(rayStart.position,-transform.up,out hit, Mathf.Infinity)) 
+        {
+            animator.SetTrigger("isFalling");
         }
     }
 
