@@ -10,6 +10,13 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     public int score;
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI highscoreText;
+
+    private void Awake()
+    {
+        highscoreText.text="Highscore:"+ GetHighScore().ToString();
+
+    }
 
     public void StartGame()
     {
@@ -30,6 +37,21 @@ public class GameManager : MonoBehaviour
     public void IncreaseScore() {
         score++;
         scoreText.text=score.ToString();
+
+        //player prefs to store small amounts of data
+        if (score > GetHighScore()){
+            PlayerPrefs.SetInt("Highscore",score);
+            highscoreText.text="Highscorre:"+score.ToString();
+
+        }
+
+
             }
+
+    public int GetHighScore()
+    {
+        int i = PlayerPrefs.GetInt("Highscore");
+        return i;
+    }
 
 }
