@@ -47,6 +47,16 @@ public class GameManager : MonoBehaviour
 
 
             }
+    public void DecreaseScore()
+    {
+        score--;
+        scoreText.text = score.ToString();
+    }
+
+    private void UpdateScoreText()
+    {
+        scoreText.text = score.ToString();
+    }
 
     public int GetHighScore()
     {
