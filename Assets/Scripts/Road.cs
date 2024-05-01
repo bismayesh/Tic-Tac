@@ -29,7 +29,6 @@ public class Road : MonoBehaviour
     // Method to create a new road part
     public void CreateNewRoadPart()
     {
-        Debug.Log("Create new road part");
 
         Vector3 spawnPos = Vector3.zero;
         float chance = Random.Range(0, 100);
